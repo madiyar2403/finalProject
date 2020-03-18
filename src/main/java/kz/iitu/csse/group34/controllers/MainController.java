@@ -218,6 +218,7 @@ public class MainController {
             if (element.getRestaurant().getId() != restaurant.getId()) {
                 iter2.remove();
             }
+
         }
         for (Comments c : comments)
         {
