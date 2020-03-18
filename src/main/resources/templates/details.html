@@ -1,0 +1,100 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="myContent">
+    <div class="row justify-content-center">
+        <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
+        <table class="container justify-content-center" >
+            <thead>
+            <tr>
+                <th><h6 th:text = "#{label.name}"></h6></th>
+                <th><h6 th:text = "#{label.description}"></h6></th>
+                <th><h6 th:text = "#{label.category}"></h6></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "restaurant : ${restaurant}">
+                <td th:text = "${restaurant.name}"></td>
+                <td th:text = "${restaurant.description}"></td>
+                <td th:text = "${restaurant.category}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+            <form th:action = "@{'/deleteRestaurant'}" method="post" style="align-content: center;">
+                <input type="hidden" th:value = "${restaurant.id}" name="restaurant_id">
+                <button class="btn btn-danger" th:text = "#{label.delete_restaurant}"></button>
+            </form>
+        </div>
+    </ul>
+    <ul>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+            <a class="link" th:href = "@{'/editRestaurant/'+${restaurant.id}}" th:text = "#{label.edit_restaurant}" style="color: #f8ffce; align-content: center;"></span></a>
+        </div>
+    </ul>
+    <div class="row justify-content-center">
+        <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
+        <table class="container justify-content-center" >
+            <thead>
+            <tr>
+                <th><h6 th:text = "#{label.name}"></h6></th>
+                <th><h6 th:text = "#{label.description}"></h6></th>
+                <th><h6 th:text = "#{label.price}"></h6></th>
+                <th sec:authorize="hasAnyRole('ROLE_MODERATOR')"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "food : ${food}">
+                    <td th:text = "${food.name}"></td>
+                    <td th:text = "${food.description}"></td>
+                    <td th:text = "${food.price}"></td>
+                    <div sec:authorize="hasAnyRole('ROLE_MODERATOR')">
+                        <td>
+                            <form th:action = "@{'/deleteFood'}" method="post">
+                                <input type="hidden" th:value = "${food.id}" name="food_id">
+                                <button class="btn btn-danger" th:text = "#{label.delete_food}"></button>
+                            </form>
+                            <a class="link" th:href = "@{'/editFood/'+${food.id}}" th:text = "#{label.edit_food}"></span></a>
+                        </td>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <div sec:authorize="hasAnyRole('ROLE_MODERATOR')">
+                <a class="link" th:href = "@{'/addFood/'+${restaurant.id}}" th:text = "#{label.add_food}" style="color: #f8ffce; align-content: center;"></span></a>
+        </div>
+    </ul>
+    <ul>
+        <div sec:authorize="hasAnyRole('ROLE_USER')">
+                <a class="link" th:href = "@{'/addComment/'+${restaurant.id}}" th:text = "#{label.add_comment}" style="color: #f8ffce; align-content: center;"></span></a>
+        </div>
+    </ul>
+    <ul>
+    <h2 th:text = "#{label.comments}"></h2>
+        <tr th:each = "comment : ${comment}">
+            <div class="container-fluid mt-4" style="border: 10px solid; background-color: white; opacity: 80%">
+            <h5 th:text = "#{label.author}"></h5> <p><td th:text = "${comment.author.name}"></td></p>
+            <h5 th:text = "#{label.comment}"></h5> <p><td th:text = "${comment.comment}"></p></td>
+            <p><td th:text = "${comment.postDate}"></td></p>
+                <div sec:authorize="hasAnyRole('ROLE_USER')" th:if="${user.id==comment.author.id}">
+                    <a class="link" th:href = "@{'/editComment/'+${comment.id}}" th:text = "#{label.edit_comment}"></span></a>
+                    <form th:action = "@{'/deleteComment'}" method="post">
+                        <input type="hidden" th:value = "${comment.id}" name="id">
+                        <button class="btn btn-danger" th:text = "#{label.delete_comment}"></button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAnyRole('ROLE_MODERATOR')" th:if="${user.id!=comment.author.id}">
+                    <form th:action = "@{'/deleteComment'}" method="post">
+                        <input type="hidden" th:value = "${comment.id}" name="id">
+                        <button class="btn btn-danger" th:text = "#{label.delete_comment}"></button>
+                    </form>
+                </div>
+            </div>
+        </tr>
+</div>
+</html>
