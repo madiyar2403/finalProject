@@ -2,7 +2,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorator="layouts/main.html">
-<div layout:fragment="myContent">
+<div layout:fragment="myContent" id="details">
+    <br><br><br>
     <div class="row justify-content-center">
         <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
         <table class="container justify-content-center" >
@@ -32,7 +33,7 @@
     </ul>
     <ul>
         <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-            <a class="link" th:href = "@{'/editRestaurant/'+${restaurant.id}}" th:text = "#{label.edit_restaurant}" style="color: #f8ffce; align-content: center;"></span></a>
+            <a class="link" th:href = "@{'/editRestaurant/'+${restaurant.id}}" th:text = "#{label.edit_restaurant}" style="color: #251010; align-content: center;"></span></a>
         </div>
     </ul>
     <div class="row justify-content-center">
@@ -64,25 +65,27 @@
             </tbody>
         </table>
     </div>
+    <br>
     <ul>
         <div sec:authorize="hasAnyRole('ROLE_MODERATOR')">
-                <a class="link" th:href = "@{'/addFood/'+${restaurant.id}}" th:text = "#{label.add_food}" style="color: #f8ffce; align-content: center;"></span></a>
+                <a th:href = "@{'/addFood/'+${restaurant.id}}" th:text = "#{label.add_food}" style="color: #251010; align-content: center;"></span></a>
         </div>
     </ul>
     <ul>
         <div sec:authorize="hasAnyRole('ROLE_USER')">
-                <a class="link" th:href = "@{'/addComment/'+${restaurant.id}}" th:text = "#{label.add_comment}" style="color: #f8ffce; align-content: center;"></span></a>
+                <a th:href = "@{'/addComment/'+${restaurant.id}}" th:text = "#{label.add_comment}" style="color: #251010; align-content: center;"></span></a>
         </div>
     </ul>
+    <br>
     <ul>
     <h2 th:text = "#{label.comments}"></h2>
         <tr th:each = "comment : ${comment}">
-            <div class="container-fluid mt-4" style="border: 10px solid; background-color: white; opacity: 80%">
+            <div class="container-fluid mt-4" style="border: 10px outset; background-color: whitesmoke; opacity: 80%">
             <h5 th:text = "#{label.author}"></h5> <p><td th:text = "${comment.author.name}"></td></p>
             <h5 th:text = "#{label.comment}"></h5> <p><td th:text = "${comment.comment}"></p></td>
             <p><td th:text = "${comment.postDate}"></td></p>
                 <div sec:authorize="hasAnyRole('ROLE_USER')" th:if="${user.id==comment.author.id}">
-                    <a class="link" th:href = "@{'/editComment/'+${comment.id}}" th:text = "#{label.edit_comment}"></span></a>
+                    <a class="link" th:href = "@{'/editComment/'+${comment.id}}" th:text = "#{label.edit_comment}" style="color: #251010;"></span></a>
                     <form th:action = "@{'/deleteComment'}" method="post">
                         <input type="hidden" th:value = "${comment.id}" name="id">
                         <button class="btn btn-danger" th:text = "#{label.delete_comment}"></button>

@@ -13,7 +13,7 @@
         ====================== */
 
         /* Main Footer */
-        footer .main-footer{	padding: 20px 0;	background: #252525;}
+        footer .main-footer{	padding: 10px 0;	background: #252525;}
         footer ul{	padding-left: 0;	list-style: none;}
 
         /* Copy Right Footer */
@@ -27,7 +27,7 @@
         .footer-copyright p {	color: #969696;	margin: 2px 0 0;}
 
         /* Footer Top */
-        .footer-top{	background: #252525;	padding-bottom: 30px;	margin-bottom: 30px;	border-bottom: 3px solid #222;}
+        .footer-top{	background: #252525;	padding-bottom: 20px;	margin-bottom: 20px;	border-bottom: 3px solid #222;}
 
         /* Footer transparent */
         footer.transparent .footer-top, footer.transparent .main-footer{	background: transparent;}
@@ -44,7 +44,7 @@
         /*====================
             Widgets
         ====================== */
-        .widget{	padding: 20px;	margin-bottom: 40px;}
+        .widget{	padding: 10px;	margin-bottom: 20px;}
         .widget.widget-last{	margin-bottom: 0px;}
         .widget.no-box{	padding: 0;	background-color: transparent;	margin-bottom: 40px;
             box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none;}
@@ -250,11 +250,6 @@
 
         @charset "UTF-8";
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
-
-
-
-
-
         h2 a {
             font-weight: 700;
             text-transform: uppercase;
@@ -344,7 +339,7 @@
         <h2 th:text = "#{label.title}"></h2>
         <nav class="shift">
             <ul>
-                <li><a href="/" th:text = "#{label.title}"></a></li>
+                <li><a href="/#index" th:text = "#{label.title}"></a></li>
                 <li><a th:href="@{'?lang=en'}">ENG</a></li>
                 <li><a th:href="@{'?lang=ru'}">РУС</a></li>
             </ul>
@@ -352,9 +347,9 @@
         <div sec:authorize="isAnonymous()">
             <nav class="shift">
                 <ul>
-                    <li><a th:href="@{'/'}" th:text = "#{label.main}"></a></li>
-                    <li><a th:href="@{'/register'}" th:text = "#{label.register}"></a></li>
-                    <li><a th:href="@{'/login'}" th:text = "#{label.login}"></a></li>
+                    <li><a th:href="@{'/#index'}" th:text = "#{label.main}"></a></li>
+                    <li><a th:href="@{'/register#register'}" th:text = "#{label.register}"></a></li>
+                    <li><a th:href="@{'/login#login'}" th:text = "#{label.login}"></a></li>
                 </ul>
             </nav>
         </div>
@@ -362,22 +357,22 @@
             <nav class="shift">
                 <ul>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER')">
-                        <a class="nav-link" th:href="@{'/profile'}" th:text = "#{label.profile}"></a>
+                        <a class="nav-link" th:href="@{'/profile#profile'}" th:text = "#{label.profile}"></a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                        <a class="nav-link" th:href="@{'/addUserFromAdminPage'}" th:text = "#{label.add_user}"></span></a>
+                        <a class="nav-link" th:href="@{'/addUserFromAdminPage#addUserFromAdminPage'}" th:text = "#{label.add_user}"></span></a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                        <a class="nav-link" th:href="@{'/users'}" th:text = "#{label.users}"></span></a>
+                        <a class="nav-link" th:href="@{'/users#users'}" th:text = "#{label.users}"></span></a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                        <a class="nav-link" th:href="@{'/moderators'}" th:text = "#{label.moderators}"></span></a>
+                        <a class="nav-link" th:href="@{'/moderators#moderators'}" th:text = "#{label.moderators}"></span></a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                        <a class="nav-link" th:href="@{'/addRestaurant'}" th:text = "#{label.add_restaurant}"></span></a>
+                        <a class="nav-link" th:href="@{'/addRestaurant#addRestaurant'}" th:text = "#{label.add_restaurant}"></span></a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MODERATOR')">
-                        <a class="nav-link" th:href="@{'/users'}" th:text = "#{label.users}"></span></a>
+                        <a class="nav-link" th:href="@{'/users#users'}" th:text = "#{label.users}"></span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="JavaScript:void(0)" onclick="toLogout()" th:text = "#{label.logout}"></a>
@@ -393,10 +388,11 @@
             }
         </script>
     </section>
-            <div layout:fragment="myContent" style="background-image: url('https://dionysoshotelpaphos.com/wp-content/uploads/Restaurant-Menu-Theme-Backgrounds.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <div layout:fragment="myContent" style="background-color: white;">
             </div>
+    <br><br><br>
     </body>
-    <footer id="footer" class="footer-1" style="min-height: calc(100vh - 80px);">
+    <footer id="footer" class="footer-1">
         <div class="main-footer widgets-dark typo-light">
             <div class="container">
                 <div class="row">

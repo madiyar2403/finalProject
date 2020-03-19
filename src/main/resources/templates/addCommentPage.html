@@ -9,7 +9,7 @@
             <input type="hidden" name="restaurant_id" th:value="*{restaurant.id}">
             <div class="form-group">
                 <label th:text = "#{label.comment}"></label>
-                <p><textarea rows="10" cols="45" class="form-control" name="comment"></textarea></p>
+                <p><textarea rows="10" cols="45" class="form-control" name="comment" style="background-color: #d9d7d1" required></textarea></p>
             </div>
             <button type="submit" class="btn btn-success" th:text = "#{label.add_comment}"></button>
         </form>

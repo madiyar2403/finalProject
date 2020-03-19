@@ -8,15 +8,15 @@
             <input type="hidden" name="restaurant_id" th:value="*{restaurant.id}">
             <div class="form-group">
                 <label th:text = "#{label.name}"></label>
-                <input type="text" class="form-control" name = "name">
+                <input type="text" class="form-control" name = "name" style="background-color: #d9d7d1" required>
             </div>
             <div class="form-group">
                 <label th:text = "#{label.description}"></label>
-                <p><textarea rows="10" cols="45" class="form-control" name="description"></textarea></p>
+                <p><textarea rows="10" cols="45" class="form-control" name="description" style="background-color: #d9d7d1" required></textarea></p>
             </div>
             <div class="form-group">
                 <label th:text = "#{label.price}"></label>
-                <input type="number" class="form-control" name="price">
+                <input type="number" class="form-control" name="price" style="background-color: #d9d7d1" required>
             </div>
             <button type="submit" class="btn btn-success" th:text = "#{label.add_food}"></button>
         </form>

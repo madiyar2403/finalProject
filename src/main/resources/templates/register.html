@@ -1,7 +1,8 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layouts/main.html">
-<div layout:fragment = "myContent">
+<div layout:fragment = "myContent" id="register">
+    <br><br><br>
     <div class="row justify-content-center">
         <form th:action = "@{'/addUser'}" method="post" >
             <div class="form-group">

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
 
 @Data
@@ -21,16 +22,20 @@ public class Comments {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotEmpty
     private Users author;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
+    @NotEmpty
     private Restaurants restaurant;
 
     @Column(name = "comment")
+    @NotEmpty
     private String comment;
 
     @Column(name = "postDate")
+    @NotEmpty
     private Date postDate;
 
 }
