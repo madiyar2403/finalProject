@@ -36,5 +36,6 @@ public class Food {
     @NotEmpty
     private double price;
 
-
+    @Column(name = "imageSource")
+    private  String ImageSource;
 }

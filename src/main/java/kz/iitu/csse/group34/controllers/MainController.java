@@ -57,10 +57,10 @@ public class MainController {
     public String addRestaurant(
             @RequestParam(name = "name") String name,
             @RequestParam(name = "description") String description,
-            @RequestParam(name = "category") String category
-
+            @RequestParam(name = "category") String category,
+            @RequestParam(name = "imageSource") String imageSource
     ){
-        restaurantRepository.save(new Restaurants(null, name, description,category));
+        restaurantRepository.save(new Restaurants(null, name, description,category, imageSource));
         return "redirect:/";
     }
     @GetMapping(path = "/addFood/{restaurant_id}")
@@ -76,11 +76,12 @@ public class MainController {
             @RequestParam(name = "name") String name,
             @RequestParam(name = "restaurant_id") Long restaurant_id,
             @RequestParam(name = "description") String description,
-            @RequestParam(name = "price") int price
+            @RequestParam(name = "price") int price,
+            @RequestParam(name = "imageSource") String imageSource
     ){
         Restaurants restaurant = restaurantRepository.getOne(restaurant_id);
 
-        foodRepository.save(new Food(null,name,restaurant,description,price));
+        foodRepository.save(new Food(null,name,restaurant,description,price, imageSource));
         return "redirect:/";
     }
 
@@ -106,13 +107,14 @@ public class MainController {
             @RequestParam(name = "name") String name,
             @RequestParam(name = "description") String description,
             @RequestParam(name = "price") int price,
-            @RequestParam(name = "food_id") Long food_id
-
+            @RequestParam(name = "food_id") Long food_id,
+            @RequestParam(name = "imageSource") String imageSource
     ){
         Food food = foodRepository.getOne(food_id);
         food.setName(name);
         food.setDescription(description);
         food.setPrice(price);
+        food.setImageSource(imageSource);
         foodRepository.save(food);
         return "redirect:/";
     }
@@ -183,13 +185,14 @@ public class MainController {
             @RequestParam(name = "name") String name,
             @RequestParam(name = "description") String description,
             @RequestParam(name = "category") String category,
-            @RequestParam(name = "restaurant_id") Long restaurant_id
-
+            @RequestParam(name = "restaurant_id") Long restaurant_id,
+            @RequestParam(name = "imageSource") String imageSource
     ){
         Restaurants restaurant = restaurantRepository.getOne(restaurant_id);
         restaurant.setName(name);
         restaurant.setDescription(description);
         restaurant.setCategory(category);
+        restaurant.setImageSource(imageSource);
         restaurantRepository.save(restaurant);
         return "redirect:/";
     }

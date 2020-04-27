@@ -32,5 +32,8 @@ public class Restaurants {
     @NotEmpty
     private String category;
 
+    @Column(name = "imageSource")
+    private String imageSource;
+
 
 }

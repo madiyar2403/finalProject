@@ -13,6 +13,7 @@
                     <th><h3 th:text = "#{label.name}"></h3></th>
                     <th><h3 th:text = "#{label.category}"></h3></th>
                     <th><h3 th:text = "#{label.details}"></h3></th>
+                    <th><h6 th:text = "#{label.imageSource}"></h6></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,6 +21,7 @@
                         <td th:text = "${restaurant.id}"></td>
                         <td th:text = "${restaurant.name}"></td>
                         <td th:text = "${restaurant.category}"></td>
+                        <td><img th:src=${restaurant.imageSource} class="d-inline-block w-45 h-25" alt="Restaurant image"></td>
                         <td>
                             <a th:href = "@{'/details/'+${restaurant.id}}" th:text = "#{label.details}"></a>
                         </td>
