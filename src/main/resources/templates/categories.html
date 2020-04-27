@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="myContent" id="categories">
+    <br><br><br>
+    <a class="link" th:href = "@{'/addCategory'}" th:text = "#{label.add_category}" style="color: #251010; align-content: center;"></span></a>
+    <br>
+    <div class="row justify-content-center">
+        <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
+        <table class="container justify-content-center" >
+            <thead>
+            <tr>
+                <th><h3>ID</h3></th>
+                <th><h3 th:text = "#{label.name}"></h3></th>
+                <th><h3 th:text = "#{label.edit_category}"></h3></th>
+                <th><h3 th:text = "#{label.delete_category}"></h3></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "category : ${category}">
+                <td th:text = "${category.id}"></td>
+                <td th:text = "${category.name}"></td>
+                <td>
+                    <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                        <a class="link" th:href = "@{'/editCategory/'+${category.id}}" th:text = "#{label.edit_category}" style="color: #251010; align-content: center;"></span></a>
+                    </div>
+                </td>
+                <td>
+                    <form th:action = "@{'/deleteCategory'}" method="post" style="align-content: center;">
+                        <input type="hidden" th:value = "${category.id}" name="category_id">
+                        <button class="btn btn-danger" th:text = "#{label.delete_category}"></button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

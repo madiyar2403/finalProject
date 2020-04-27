@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layouts/main.html">
+    <div layout:fragment="myContent" id="profile">
+        <br><br><br>
+        <div class = "row justify-content-center">
+            <div class="col-sm-8">
+                <h1 th:text = "#{label.user_fullName}"></h1>
+                <h2>
+                    <span th:text = "${user.name}"></span>
+                    <span th:text = "${user.surname}"></span>
+                </h2>
+                <h1 th:text = "#{label.user_email}"></h1>
+                <h2>
+                    <span th:text = "${user.email}"></span>
+                </h2>
+            </div>
+        </div>
+        <div class = "row justify-content-center">
+            <b class="col-sm-8">
+                <b><h2><a class="link justify-content-center" th:href = "@{'/editProfile/'+${user.id}}" th:text = "#{label.edit_profile}" style="color: #251010; align-content: center;"></a></h2></b>
+                <b><h2><a class="link justify-content-center" th:href = "@{'/refreshPassword/'+${user.id}}" th:text = "#{label.refresh_password}" style="color: #251010; align-content: center;"></a></h2></b>
+            </div>
+        </div>
+    </div>
+</html>

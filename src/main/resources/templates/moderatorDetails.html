@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="myContent">
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-sm-12">
+                <table cellpadding="20" class="table table-stripped">
+                    <tbody>
+                    <tr>
+                        <td>
+                            ID :
+                        </td>
+                        <td th:text = "${users.id}"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            EMAIL :
+                        </td>
+                        <td th:text = "${users.email}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text = "#{label.user_name}">
+                        </td>
+                        <td th:text = "${users.name}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text = "#{label.user_surname}">
+                        </td>
+                        <td th:text = "${users.surname}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text = "#{label.role}">
+                        </td>
+                        <td th:text = "#{label.moderator_role}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text = "#{label.status}">
+                        </td>
+                        <td>
+                            <div th:if="${users.isActive()}" th:text = "#{label.active}"></div>
+                            <div th:unless="${users.isActive()}" th:text = "#{label.blocked}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:text = "#{label.refresh_password}">
+                        </td>
+                        <td>
+                            <a th:href = "@{'/refreshPassword/'+${users.id}}" th:text = "#{label.refresh_password}"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <form th:action = "@{'/changeStatusModerator'}" method="post">
+            <div class="form-group">
+                <input type="hidden" name="user_id" th:value="*{users.id}">
+                <h3 th:text = "#{label.change_status}" style="color: #2C3446;"></h3>
+                <select class="form-control" name="status">
+                    <option th:value="${1}" th:text = "#{label.active}"></option>
+                    <option th:value="${0}" th:text = "#{label.blocked}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success" th:text = "#{label.change_status}"></button>
+        </form>
+    </div>
+</div>
+</html>
