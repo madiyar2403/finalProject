@@ -19,7 +19,6 @@ public class Category {
     public Long id;
 
     @Column(name = "name")
-    @NotEmpty
     public String name;
 
 }

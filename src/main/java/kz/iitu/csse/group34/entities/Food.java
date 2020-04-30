@@ -20,20 +20,16 @@ public class Food {
     private Long id;
 
     @Column(name = "name")
-    @NotEmpty
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
-    @NotEmpty
     private Restaurants restaurant;
 
     @Column(name = "description")
-    @NotEmpty
     private String description;
 
     @Column(name = "price")
-    @NotEmpty
     private double price;
 
     @Column(name = "imageSource")

@@ -21,11 +21,9 @@ public class Restaurants {
     private Long id;
 
     @Column(name = "name")
-    @NotEmpty
     private String name;
 
     @Column(name = "description")
-    @NotEmpty
     private String description;
 
     @ManyToOne
