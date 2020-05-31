@@ -2,7 +2,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorator="layouts/main.html">
-<div layout:fragment="myContent" >
+<div layout:fragment="myContent">
+    <br>
     <div class="row justify-content-center">
         <form th:action = "@{'/addCategory'}" method="post">
             <div class="form-group">

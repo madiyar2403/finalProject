@@ -4,7 +4,9 @@
       layout:decorator="layouts/main.html">
 <div layout:fragment="myContent" id="categories">
     <br><br><br>
-    <a class="link" th:href = "@{'/addCategory'}" th:text = "#{label.add_category}" style="color: #251010; align-content: center;"></span></a>
+    <div class="row justify-content-center">
+        <a class="link" th:href = "@{'/addCategory'}" th:text = "#{label.add_category}" style="color: #251010; align-content: center;"></span></a>
+    </div>
     <br>
     <div class="row justify-content-center">
         <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></pan></h1>
@@ -23,7 +25,7 @@
                 <td th:text = "${category.name}"></td>
                 <td>
                     <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-                        <a class="link" th:href = "@{'/editCategory/'+${category.id}}" th:text = "#{label.edit_category}" style="color: #251010; align-content: center;"></span></a>
+                        <a th:href = "@{'/editCategory/'+${category.id}}" th:text = "#{label.edit_category}"></span></a>
                     </div>
                 </td>
                 <td>

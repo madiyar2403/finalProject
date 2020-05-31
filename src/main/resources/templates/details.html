@@ -25,19 +25,24 @@
             </tbody>
         </table>
     </div>
-    <ul>
-        <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-            <form th:action = "@{'/deleteRestaurant'}" method="post" style="align-content: center;">
-                <input type="hidden" th:value = "${restaurant.id}" name="restaurant_id">
-                <button class="btn btn-danger" th:text = "#{label.delete_restaurant}"></button>
-            </form>
-        </div>
-    </ul>
-    <ul>
-        <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-            <a class="link" th:href = "@{'/editRestaurant/'+${restaurant.id}}" th:text = "#{label.edit_restaurant}" style="color: #251010; align-content: center;"></span></a>
-        </div>
-    </ul>
+    <br>
+    <div class="row justify-content-center">
+        <ul>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                <form th:action = "@{'/deleteRestaurant'}" method="post" style="align-content: center;">
+                    <input type="hidden" th:value = "${restaurant.id}" name="restaurant_id">
+                    <button class="btn btn-danger" th:text = "#{label.delete_restaurant}"></button>
+                </form>
+            </div>
+        </ul>
+    </div>
+    <div class="row justify-content-center">
+        <ul>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                <a class="link" th:href = "@{'/editRestaurant/'+${restaurant.id}}" th:text = "#{label.edit_restaurant}" style="color: #251010; align-content: center;"></span></a>
+            </div>
+        </ul>
+    </div>
     <div class="row justify-content-center">
         <h1><span class="blue"></span><span class="blue"></span> <span class="yellow"></span></h1>
         <table class="container justify-content-center" >
@@ -70,17 +75,20 @@
         </table>
     </div>
     <br>
-    <ul>
-        <div sec:authorize="hasAnyRole('ROLE_MODERATOR')">
-                <a th:href = "@{'/addFood/'+${restaurant.id}}" th:text = "#{label.add_food}" style="color: #251010; align-content: center;"></span></a>
-        </div>
-    </ul>
-    <ul>
-        <div sec:authorize="hasAnyRole('ROLE_USER')">
-                <a th:href = "@{'/addComment/'+${restaurant.id}}" th:text = "#{label.add_comment}" style="color: #251010; align-content: center;"></span></a>
-        </div>
-    </ul>
-    <br>
+    <div class="row justify-content-center">
+        <ul>
+            <div sec:authorize="hasAnyRole('ROLE_MODERATOR')">
+                    <a th:href = "@{'/addFood/'+${restaurant.id}}" th:text = "#{label.add_food}" style="color: #251010; align-content: center;"></span></a>
+            </div>
+        </ul>
+    </div>
+    <div class="row justify-content-center">
+        <ul>
+            <div sec:authorize="hasAnyRole('ROLE_USER')">
+                    <a th:href = "@{'/addComment/'+${restaurant.id}}" th:text = "#{label.add_comment}" style="color: #251010; align-content: center;"></span></a>
+            </div>
+        </ul>
+    </div>
     <ul>
     <h2 th:text = "#{label.comments}"></h2>
         <tr th:each = "comment : ${comment}">
